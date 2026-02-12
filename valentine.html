@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine 💘</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .box {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 360px;
+      max-width: 90%;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #ff2e63;
+      margin-bottom: 15px;
+    }
+
+    .btns {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yesBtn {
+      background: #00c853;
+      color: white;
+    }
+
+    #noBtn {
+      background: #ff1744;
+      color: white;
+      position: relative;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #ff2e63;
+      font-weight: bold;
+    }
+
+    #photo {
+      display: none;
+      margin-top: 20px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h1>💖 Will you be my Valentine? 💖</h1>
+
+    <div class="btns">
+      <button id="yesBtn">Yes 😍</button>
+      <button id="noBtn">No 😭</button>
+    </div>
+
+    <div id="message"></div>
+
+    <!-- Photo -->
+    <img id="photo" src="her.jpg" alt="Her Photo" />
+
+    <!-- Song -->
+    <audio id="song" src="song.mp4"></audio>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const message = document.getElementById("message");
+    const photo = document.getElementById("photo");
+    const song = document.getElementById("song");
+
+    function moveNoButton() {
+      // Make NO button jump anywhere on screen
+      const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+      const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      // Make it "absolute" after it runs away
+      noBtn.style.position = "fixed";
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+      noBtn.style.zIndex = "9999";
+    }
+
+    // Run away on laptop (mouse)
+    noBtn.addEventListener("mouseenter", moveNoButton);
+
+    // Run away on phone (touch)
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    // Run away if click also
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    // YES button action
+    yesBtn.addEventListener("click", () => {
+      message.innerHTML = "YAYYYY 😍💘 I LOVE YOUUU MY BBE KMENG TOCH❤️";
+
+      // Hide NO button
+      noBtn.style.display = "none";
+
+      // Show photo
+      photo.style.display = "block";
+
+      // Play song
+      song.play();
+
+      // Make YES bigger
+      yesBtn.style.transform = "scale(1.2)";
+    });
+  </script>
+
+</body>
+</html>
